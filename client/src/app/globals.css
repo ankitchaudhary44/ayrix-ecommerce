@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: 255 255 255; /* White */
+    --accent-primary: 0 0 0; /* Black */
+    --text-primary: 24 24 27; /* Zinc-900 */
+    --text-muted: 113 113 122; /* Zinc-500 */
+    --border-subtle: 228 228 231; /* Zinc-200 */
+  }
+
+  .dark {
+    --bg-base: 9 9 11; /* Zinc-950 */
+    --accent-primary: 255 255 255; /* White */
+    --text-primary: 250 250 250; /* Zinc-50 */
+    --text-muted: 161 161 170; /* Zinc-400 */
+    --border-subtle: 39 39 42; /* Zinc-800 */
+  }
+
+  body {
+    background-color: rgb(var(--bg-base));
+    color: rgb(var(--text-primary));
+    @apply antialiased font-sans overflow-x-hidden min-h-screen selection:bg-rose-500 selection:text-white transition-colors duration-300;
+  }
+}
+
+/* Minimalist Structural Classes */
+.panel-border {
+  border: 1px solid rgb(var(--border-subtle));
+}
+
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Scrollbar hiding for minimal look */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
