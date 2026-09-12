@@ -26,7 +26,7 @@ export class FitEngine {
   ): IFitRecommendation {
     const profile = user.profile || {};
     const sizeChart = product.sizeChart || {};
-    const availableSizes = product.sizes || Array.from(sizeChart.keys?.() || []);
+    const availableSizes = product.sizes || Object.keys(sizeChart || {});
 
     const sizeScores: Record<string, number> = {};
     const detailedResults: Record<string, ISizeFitResult> = {};
@@ -100,7 +100,7 @@ export class FitEngine {
       if (profile.preferredFit) {
         if (profile.preferredFit === product.fitType) {
           score += 8;
-        } else if (profile.preferredFit === 'tight' && product.fitType === 'loose') {
+        } else if (profile.preferredFit === 'tight' && product.fitType === 'oversized') {
           if (size.toUpperCase() < (usualSize || 'M').toUpperCase()) score += 5;
         }
       }

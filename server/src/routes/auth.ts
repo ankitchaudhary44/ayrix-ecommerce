@@ -74,7 +74,7 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
     const validated = loginSchema.parse(req.body);
 
     const user = await User.findOne({ email: validated.email.toLowerCase() });
-    if (!user) {
+    if (!user || !user.passwordHash) {
       res.status(401).json({ error: 'Invalid email or password' });
       return;
     }
